@@ -15,8 +15,9 @@ function DiaryList() {
     return (
         <div className="space-y-4">
             {diaries.map((entry) => (
-            <DiaryItem 
+            <DiaryItem
             key={entry.id}
+            id={entry.id}
             title={entry.title}
             result={entry.result}
         />

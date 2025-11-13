@@ -1,13 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import doosanLogo from "../assets/logos/doosan.webp";
+import lgLogo from "../assets/logos/lg.jpeg";
+import kiaLogo from "../assets/logos/kia.jpg";
+import samsungLogo from "../assets/logos/samsung.png";
+import lotteLogo from "../assets/logos/lotte.png";
+import hanwhaLogo from "../assets/logos/hanwha.png";
+import ssgLogo from "../assets/logos/ssg.png";
+import ncLogo from "../assets/logos/nc.png";
+import ktLogo from "../assets/logos/kt.jpeg";
+import kiwoomLogo from "../assets/logos/kiwoom.png";
 
 function LandingPage() {
     const navigate = useNavigate();
     const [ selectedTeam, setSelectedTeam ] = useState(null);
 
     const teams = [
-    "두산", "LG", "기아", "삼성", "롯데",
-    "한화", "SSG", "NC", "KT", "키움"
+        { name: "두산", logo: doosanLogo },
+        { name: "LG", logo: lgLogo },
+        { name: "기아", logo: kiaLogo },
+        { name: "삼성", logo: samsungLogo },
+        { name: "롯데", logo: lotteLogo },
+        { name: "한화", logo: hanwhaLogo },
+        { name: "SSG", logo: ssgLogo },
+        { name: "NC", logo: ncLogo },
+        { name: "KT", logo: ktLogo },
+        { name: "키움", logo: kiwoomLogo }
     ];
 
     const handleConfirm = () => {
@@ -20,29 +38,47 @@ function LandingPage() {
     };
 
     return (
-        <div className="p-8 max-w-md h-screen mx-auto shadow-md bg-white">
-            <div className="flex flex-col mb-8">
-                <div className="text-center font-extrabold text-2xl">응원팀 선택하기</div>
-                <div className="text-center text-gray-400">나의 팀을 고르세요!</div>
+        <div className="p-8 h-screen flex flex-col">
+            <div className="flex flex-col mb-10 mt-8">
+                <div className="text-center font-extrabold text-3xl mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    응원팀 선택하기
+                </div>
+                <div className="text-center text-gray-500 text-sm">나의 팀을 고르세요!</div>
             </div>
 
-            <div className="grid grid-cols-2 gap-5 flex-grow">
+            <div className="grid grid-cols-2 gap-4 flex-grow">
                 {teams.map((team, index) => (
-                <button key={index} className={`rounded-xl p-3 h-25
-                    ${selectedTeam === team ? "bg-gray-500 text-white" : "bg-gray-200"}`}
-                    onClick={() => setSelectedTeam(team)}
+                <button
+                    key={index}
+                    className={`rounded-2xl p-3 h-24 transition-all duration-300 transform hover:scale-105 flex items-center justify-center ${
+                        selectedTeam === team.name
+                            ? "bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg ring-4 ring-blue-300"
+                            : "bg-white hover:bg-gray-50 shadow-md"
+                    }`}
+                    onClick={() => setSelectedTeam(team.name)}
                 >
-                {team}
+                    <img
+                        src={team.logo}
+                        alt={team.name}
+                        className="h-16 w-16 object-contain"
+                    />
                 </button>
                 ))}
             </div>
-            
-            <div className="flex justify-center mt-6">
-                <button className="mt-6 w-full h-12 rounded-xl bg-gray-200 py-2" onClick={handleConfirm}>
-                시작하기
+
+            <div className="flex justify-center mt-8 mb-8">
+                <button
+                    className={`w-full h-14 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 ${
+                        selectedTeam
+                            ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg hover:shadow-xl"
+                            : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    }`}
+                    onClick={handleConfirm}
+                >
+                    시작하기
                 </button>
             </div>
-            
+
         </div>
       );
 }
