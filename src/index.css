@@ -1,0 +1,16 @@
+/* src/index.css */
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply m-0 bg-gray-100;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
